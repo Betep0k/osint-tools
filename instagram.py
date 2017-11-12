@@ -2,8 +2,14 @@ import requests
 from json import loads as json_decode
 import datetime
 from time import sleep
+import argparse
 
-location = 267646263
+parser = argparse.ArgumentParser()
+parser.add_argument("location", help="location for parsing photos",
+                    type=int)
+args = parser.parse_args()
+
+location = args.location
 
 response = requests.get('https://www.instagram.com/explore/locations/%d/?__a=1' % location)
 data = json_decode(response.text)
